@@ -9,7 +9,7 @@
 	<key>CFBundleIconFile</key>
 	<string>MacWolfSDL.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>io.github.lategator.macwolfsdl</string>
+	<string>org.codeberg.kaylagator.macwolfsdl</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

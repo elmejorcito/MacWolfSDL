@@ -55,7 +55,7 @@ the Options menu.
 
 ## Building
 
-Source code is available at: https://github.com/LateGator/MacWolfSDL/
+Source code is available at: https://codeberg.org/kaylagator/MacWolfSDL/
 
 CMake and SDL3 are required to build. SDL3 will be downloaded automatically if
 it is not present on the system.
