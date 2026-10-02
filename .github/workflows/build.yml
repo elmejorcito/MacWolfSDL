@@ -1,0 +1,43 @@
+name: Build MacWolfSDL for Windows
+
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Download MacWolfSDL source
+        shell: cmd
+        run: |
+          git clone --recurse-submodules https://codeberg.org/kaylagator/MacWolfSDL.git source
+
+      - name: Configure
+        shell: cmd
+        run: |
+          cmake -S source -B build
+
+      - name: Build Release
+        shell: cmd
+        run: |
+          cmake --build build --config Release
+
+      - name: Collect Windows binaries
+        shell: powershell
+        run: |
+          New-Item -ItemType Directory -Force -Path package
+
+          Get-ChildItem build -Recurse -File |
+            Where-Object { $_.Extension -in ".exe", ".dll" } |
+            Copy-Item -Destination package
+
+          Write-Host "Files collected:"
+          Get-ChildItem package
+
+      - name: Upload compiled MacWolfSDL
+        uses: actions/upload-artifact@v4
+        with:
+          name: MacWolfSDL-Windows
+          path: package
